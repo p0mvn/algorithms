@@ -1,9 +1,3 @@
-#include <vector>
-
-using namespace std;
-
-class Solution {
-public:
     vector<int> plusOne(vector<int>& digits) 
     {
         int curN;
@@ -28,12 +22,18 @@ public:
             }
         }
         
-        if (1 == carry)
+        if(1 == carry && digits.size() > 0)
         {
+            carry = digits[0];
             digits[0] = 1;
-            digits.push_back(0);
+            for(cur = 1; cur < digits.size(); ++cur)
+            {
+                curN = digits[cur];
+                digits[cur] = carry;
+                carry = curN;
+            }
+            digits.push_back(carry);
         }
         
         return digits;
     }
-};
