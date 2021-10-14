@@ -34,13 +34,13 @@ func digitToStartAscii(d int) int  {
 
 func constructAllLettersForDigit(d int) []string {
 	start := digitToStartAscii(d)
-	result := []string{string(start)}
+	result := []string{string(rune(start))}
 	if d == 0 || d == 1 {
 		return result
 	}
 	
 	for i := start + 1; i < digitToStartAscii(d + 1); i++ {
-		result = append(result, string(i))
+		result = append(result, string(rune(i)))
 	}
 	return result
 }
