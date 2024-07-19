@@ -18,5 +18,8 @@ func main() {
 	// BFS(*graph, searchData, 1)
 
 	// 2. connected components problem
-	connectedComponents(*graph)
+	// connectedComponents(*graph)
+
+	// 3. Two color problem
+	twocolor(*graph)
 }

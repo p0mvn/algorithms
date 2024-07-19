@@ -5,12 +5,12 @@ func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 
 	queue = append(queue, startV)
 
-	processed := make([]bool, len(graph.uniqueVertices))
+	processed := make(map[int]struct{}, len(graph.uniqueVertices))
 
-	parent := make([]int, len(graph.uniqueVertices))
+	parent := make(map[int]int, len(graph.uniqueVertices))
 
-	searchData.Discovered[startV-1] = struct{}{}
-	processed[startV-1] = true
+	searchData.Discovered[startV] = struct{}{}
+	processed[startV] = struct{}{}
 
 	for len(queue) > 0 {
 		curV := queue[0]
@@ -21,17 +21,17 @@ func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 
 		for p := graph.edges[curV]; p != nil; p = p.next {
 			y := p.y
-			yIndex := y - 1
 
-			if !processed[yIndex] || graph.directed {
+			_, ok := processed[y]
+			if !ok || graph.directed {
 				searchData.ProcessEdge(curV, y)
 			}
 
-			_, ok := searchData.Discovered[yIndex]
+			_, ok = searchData.Discovered[y]
 			if !ok {
 				queue = append(queue, y)
-				searchData.Discovered[yIndex] = struct{}{}
-				parent[yIndex] = curV
+				searchData.Discovered[y] = struct{}{}
+				parent[y] = curV
 			}
 		}
 
@@ -53,9 +53,9 @@ func defaultProcessEdge(x, y int) {
 	println("Processed edge:", x, y)
 }
 
-func printParents(parents []int) {
+func printParents(parents map[int]int) {
 	println("Parents:")
 	for i, p := range parents {
-		println(i+1, ":", p)
+		println(i, ":", p)
 	}
 }

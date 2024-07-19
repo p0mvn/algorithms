@@ -12,7 +12,7 @@ func connectedComponents(graph AdjacencyListGraph) {
 	c := 0
 
 	for i := range graph.uniqueVertices {
-		_, ok := searchData.Discovered[i-1]
+		_, ok := searchData.Discovered[i]
 		if !ok {
 			c++
 			println("Component", c)
