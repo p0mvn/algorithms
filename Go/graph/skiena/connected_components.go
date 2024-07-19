@@ -3,7 +3,10 @@ package main
 func connectedComponents(graph AdjacencyListGraph) {
 
 	searchData := &SearchData{
-		Discovered: make(map[int]struct{}, len(graph.uniqueVertices)),
+		Discovered:         make(map[int]struct{}, len(graph.uniqueVertices)),
+		ProcessVertexEarly: defaultProcessVertexEarly,
+		ProcessVertexLate:  defaultProcessVertexLate,
+		ProcessEdge:        defaultProcessEdge,
 	}
 
 	c := 0

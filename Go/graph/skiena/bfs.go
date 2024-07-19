@@ -17,14 +17,14 @@ func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 		queue = queue[1:]
 
 		// Process the current vertex
-		processVertexEarly(curV)
+		searchData.ProcessVertexEarly(curV)
 
 		for p := graph.edges[curV]; p != nil; p = p.next {
 			y := p.y
 			yIndex := y - 1
 
 			if !processed[yIndex] || graph.directed {
-				processEdge(curV, y)
+				searchData.ProcessEdge(curV, y)
 			}
 
 			_, ok := searchData.Discovered[yIndex]
@@ -35,21 +35,21 @@ func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 			}
 		}
 
-		processVertexLate(curV)
+		searchData.ProcessVertexLate(curV)
 	}
 
 	printParents(parent)
 }
 
-func processVertexEarly(v int) {
+func defaultProcessVertexEarly(v int) {
 	println("Processed vertex early:", v)
 }
 
-func processVertexLate(v int) {
+func defaultProcessVertexLate(v int) {
 	println("Processed vertex late:", v)
 }
 
-func processEdge(x, y int) {
+func defaultProcessEdge(x, y int) {
 	println("Processed edge:", x, y)
 }
 

@@ -10,11 +10,13 @@ func main() {
 	graph.InsertEdge(5, 2, false)
 	graph.InsertEdge(1, 6, false)
 
+	// 1. Simple BFS
 	// searchData := &SearchData{
 	// 	Discovered: make([]bool, len(graph.uniqueVertices)),
 	// }
 
 	// BFS(*graph, searchData, 1)
 
+	// 2. connected components problem
 	connectedComponents(*graph)
 }
