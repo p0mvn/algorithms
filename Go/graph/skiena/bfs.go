@@ -1,16 +1,15 @@
 package main
 
-func BFS(graph AdjacencyListGraph, startV int) {
+func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 	queue := make([]int, 0)
 
 	queue = append(queue, startV)
 
 	processed := make([]bool, len(graph.uniqueVertices))
-	discovered := make([]bool, len(graph.uniqueVertices))
 
 	parent := make([]int, len(graph.uniqueVertices))
 
-	discovered[startV-1] = true
+	searchData.Discovered[startV-1] = struct{}{}
 	processed[startV-1] = true
 
 	for len(queue) > 0 {
@@ -28,9 +27,10 @@ func BFS(graph AdjacencyListGraph, startV int) {
 				processEdge(curV, y)
 			}
 
-			if !discovered[yIndex] {
+			_, ok := searchData.Discovered[yIndex]
+			if !ok {
 				queue = append(queue, y)
-				discovered[yIndex] = true
+				searchData.Discovered[yIndex] = struct{}{}
 				parent[yIndex] = curV
 			}
 		}

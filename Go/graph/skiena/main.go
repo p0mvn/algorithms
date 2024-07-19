@@ -10,5 +10,11 @@ func main() {
 	graph.InsertEdge(5, 2, false)
 	graph.InsertEdge(1, 6, false)
 
-	BFS(*graph, 1)
+	// searchData := &SearchData{
+	// 	Discovered: make([]bool, len(graph.uniqueVertices)),
+	// }
+
+	// BFS(*graph, searchData, 1)
+
+	connectedComponents(*graph)
 }
