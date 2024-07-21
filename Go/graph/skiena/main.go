@@ -1,5 +1,13 @@
 package main
 
+// 6
+// |
+// |
+// 1 -----2------3------4
+//        |             |
+//        |             |
+//         -------------5
+
 func main() {
 	graph := NewGraph()
 
@@ -21,5 +29,20 @@ func main() {
 	// connectedComponents(*graph)
 
 	// 3. Two color problem
-	twocolor(*graph)
+	// twocolor(*graph)
+
+	// 4. DFS
+	searchData := &SearchData{
+		Discovered: make(map[int]struct{}, len(graph.uniqueVertices)),
+		Processed:  make(map[int]struct{}, len(graph.uniqueVertices)),
+		DFSData: DFSData{
+			EntryTime: make(map[int]int, len(graph.uniqueVertices)),
+			ExitTime:  make(map[int]int, len(graph.uniqueVertices)),
+		},
+
+		ProcessVertexEarly: defaultProcessVertexEarly,
+		ProcessVertexLate:  defaultProcessVertexLate,
+		ProcessEdge:        defaultProcessEdge,
+	}
+	DFS(graph, searchData, 1)
 }
