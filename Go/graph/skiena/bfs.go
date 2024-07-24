@@ -7,8 +7,6 @@ func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 
 	processed := make(map[int]struct{}, len(graph.uniqueVertices))
 
-	parent := make(map[int]int, len(graph.uniqueVertices))
-
 	searchData.Discovered[startV] = struct{}{}
 	processed[startV] = struct{}{}
 
@@ -31,14 +29,14 @@ func BFS(graph AdjacencyListGraph, searchData *SearchData, startV int) {
 			if !ok {
 				queue = append(queue, y)
 				searchData.Discovered[y] = struct{}{}
-				parent[y] = curV
+				searchData.Parent[y] = curV
 			}
 		}
 
 		searchData.ProcessVertexLate(curV)
 	}
 
-	printParents(parent)
+	printParents(searchData.Parent)
 }
 
 func defaultProcessVertexEarly(v int) {

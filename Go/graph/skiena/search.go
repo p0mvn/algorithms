@@ -5,6 +5,10 @@ type SearchData struct {
 
 	Processed map[int]struct{}
 
+	Parent map[int]int
+
+	Finished bool
+
 	ProcessVertexEarly func(v int)
 
 	ProcessVertexLate func(v int)

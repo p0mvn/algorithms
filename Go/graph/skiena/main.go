@@ -32,17 +32,20 @@ func main() {
 	// twocolor(*graph)
 
 	// 4. DFS
-	searchData := &SearchData{
-		Discovered: make(map[int]struct{}, len(graph.uniqueVertices)),
-		Processed:  make(map[int]struct{}, len(graph.uniqueVertices)),
-		DFSData: DFSData{
-			EntryTime: make(map[int]int, len(graph.uniqueVertices)),
-			ExitTime:  make(map[int]int, len(graph.uniqueVertices)),
-		},
+	// searchData := &SearchData{
+	// 	Discovered: make(map[int]struct{}, len(graph.uniqueVertices)),
+	// 	Processed:  make(map[int]struct{}, len(graph.uniqueVertices)),
+	// 	DFSData: DFSData{
+	// 		EntryTime: make(map[int]int, len(graph.uniqueVertices)),
+	// 		ExitTime:  make(map[int]int, len(graph.uniqueVertices)),
+	// 	},
 
-		ProcessVertexEarly: defaultProcessVertexEarly,
-		ProcessVertexLate:  defaultProcessVertexLate,
-		ProcessEdge:        defaultProcessEdge,
-	}
-	DFS(graph, searchData, 1)
+	// 	ProcessVertexEarly: defaultProcessVertexEarly,
+	// 	ProcessVertexLate:  defaultProcessVertexLate,
+	// 	ProcessEdge:        defaultProcessEdge,
+	// }
+	// DFS(graph, searchData, 1)
+
+	// 5. Find cycle
+	findCycle(graph)
 }

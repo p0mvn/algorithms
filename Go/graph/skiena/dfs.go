@@ -3,8 +3,10 @@ package main
 import "fmt"
 
 func DFS(graph *AdjacencyListGraph, searchData *SearchData, startV int) error {
-
-	// TODO: check for termination
+	if searchData.Finished {
+		fmt.Println("Finished search")
+		return nil
+	}
 
 	v := startV
 
@@ -19,19 +21,25 @@ func DFS(graph *AdjacencyListGraph, searchData *SearchData, startV int) error {
 
 	searchData.ProcessVertexEarly(v)
 
-	for p := vEdges; p != nil; p = p.next {
+	p := vEdges
+	for p != nil {
 		y := p.y
 
 		_, ok := searchData.Discovered[y]
 		if !ok {
+			searchData.Parent[y] = v
 			searchData.ProcessEdge(v, y)
 			DFS(graph, searchData, y)
 		} else if _, ok := searchData.Processed[y]; !ok || graph.directed {
 			searchData.ProcessEdge(v, y)
-
 		}
 
-		// TODO: check for termination
+		if searchData.Finished {
+			fmt.Println("Finished search")
+			return nil
+		}
+
+		p = p.next
 	}
 
 	searchData.ProcessVertexLate(v)
