@@ -47,5 +47,8 @@ func main() {
 	// DFS(graph, searchData, 1)
 
 	// 5. Find cycle
-	findCycle(graph)
+	// findCycle(graph)
+
+	// 6. Articulation vertices
+
 }
