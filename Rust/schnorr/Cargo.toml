@@ -1,0 +1,8 @@
+[package]
+name = "schnorr"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+curve25519-dalek = { version = "4.1.3", features = ["rand_core"] }
+rand = "0.8"
